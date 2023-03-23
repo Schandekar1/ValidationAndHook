@@ -780,7 +780,7 @@ components:
             type: string
             description: A modified list of permissions needed to use the entity that
               was updated.
-            example: '["performancemonitoring:View"]'
+            example: [performancemonitoring:View]
         featureToggle:
           type: string
           description: Feature toggle for using the entity that was updated.
@@ -806,7 +806,7 @@ components:
           type: array
           description: A modified list of permissions needed to access the entity
             that you are updating.
-          example: [agentList:View]
+          example: [agentList:View,performancemonitoring:View,agentList:View]
           items:
             type: string
             description: A modified list of permissions needed to access the entity
