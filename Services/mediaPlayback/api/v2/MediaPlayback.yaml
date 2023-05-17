@@ -8,6 +8,13 @@ info:
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+servers:
+  - url: https://na1.nice-incontact.com/data-extraction/v1
+    description: Production Oregon Environment (uses live data)
+    variables: {}
+  - url: https://au1.nice-incontact.com/data-extraction/v1
+    description: Production Australia Environment (uses live data)
+    variables: {}
 tags:
   - name: Accessing the Recording Media
     description: For 'voice-only' and 'voice-and-screen' media types, the API transfers the interaction metadata and a link to the media file. For 'chat' and 'email' media types, the API transfers the interaction metadata and the transcript.
