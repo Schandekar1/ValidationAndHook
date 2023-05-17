@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  description: You can use this API to access CXone recording media. Depending on the media type, you get the metadata and transcript, or a link to the media file. This API is generally used for playing back media.
+  description:  Depending on the media type, you get the metadata and transcript, or a link to the media file. This API is generally used for playing back media.
   version: "V2"
   title: Media Playback API
   contact:
@@ -8,35 +8,28 @@ info:
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
-servers:
-  - url: https://na1.nice-incontact.com/data-extraction/v1
-    description: Production Oregon Environment (uses live data)
-    variables: {}
-  - url: https://au1.nice-incontact.com/data-extraction/v1
-    description: Production Australia Environment (uses live data)
-    variables: {}
 tags:
   - name: Accessing the Recording Media
-    description: For 'voice-only' and 'voice-and-screen' media types, the API transfers the interaction metadata and a link to the media file. For 'chat' and 'email' media types, the API transfers the interaction metadata and the transcript.
+    description: For 'voice-only' and 'voice-and-screen' media types,xcvcxv sdjfsdjftsdfmnsdf and a link to the media file. For 'chat' and 'email' media types, the API transfers the interaction metadata and the transcript.
 paths:
   /media-playback/v2/contacts:
     get:
       tags:
         - Accessing the Recording Media
       summary: Access the full contact (the entire interaction with all segments) based on ACD Call ID (e.g., CXone ACD Master Contact ID). The ACD Call ID depends on the ACD solution, for example, this is the same as the CXone ACD Master Contact ID. **Keep in mind that using the ACD Call ID GET method, you can play back interactions recorded from December 13, 2018. Playing back an interaction recorded before December 13, 2018 will give an Interaction Not Found error.
-      description: Accessxxc the full contact (the entire interaction with all segments) based on ACD Call ID (e.g., CXone ACD Master Contact ID). The ACD Call ID depends on the ACD solution, for example, this is the same as the CXone ACD Master Contact ID. **Keep in mind that using the ACD Call ID GET method, you can play back interactions recorded from December 13, 2018. Playing back an interaction recorded before December 13, 2018 will give an Interaction Not Found error.
+      description: Access the full contact (the entire interaction with all segments) based on ACD Call ID (e.g., CXone ACD Master Contact ID). The ACD Call ID depends on the ACD solution, for example, this is the same as the CXone ACD Master Contact ID. **Keep in mind that using the ACD Call ID GET method, you can play back interactions recorded from December 13, 2018. Playing back an interaction recorded before December 13, 2018 will give an Interaction Not Found error.
       operationId: getACDContactRecordingData
       parameters:
         - name: acd-call-id
           in: query
           description: Unique identifier received from the ACD
-          required: true
+          required: false
           schema:
             type: string
         - name: media-type
           in: query
           description: Interaction type (such as voice-only, voice-and-screen, chat, email). Keep in mind, a single contact can have more than 1 media type. You can limit the results by selecting specific media types. For example, if you want to only get the voice recording without screen, select voice-only.
-          required: false
+          required: true
           schema:
             type: array
             items:
@@ -44,7 +37,7 @@ paths:
               enum:
                 - voice-only
                 - voice-and-screen
-                - chat
+                - sms
                 - email
                 - all
             default: all
@@ -85,14 +78,6 @@ paths:
                 $ref: '#/components/schemas/ErrorApiResponse'
               example:
                 $ref: '#/components/examples/Error401Example'
-        '403':
-          description: 403 Permissions Required
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
-              example:
-                $ref: '#/components/examples/Error403Example'
         '404':
           description: 404 Interaction Not Found
           content:
@@ -228,7 +213,7 @@ components:
                 acwEndTime: '2018-11-21T18:36:36.347Z' 
                 participants: 
                   - participantType: AGENT 
-                    participantName: Angela Bryant 
+                    participantName: Sachin  
                     actions: 
                       - timeStamp: '2018-11-21T18:30:09.643Z' 
                         action: NewOutbound 
@@ -660,7 +645,7 @@ components:
         startTime:
           type: string
           format: date-time
-          description: Date and time the interaction starts, configured according to ISO8601 RFC3339
+          description: Date and time the interaction sdds sdfsdfstarts, configured according to ISO8601 RFC3339
         endTime:
           type: string
           format: date-time
@@ -721,7 +706,7 @@ components:
         endTime:
           type: string
           format: date-time
-          description: Date and time the interaction ends, configured according to ISO8601 RFC3339
+          description: Date and time the interactionfsdfs ends, configured according to ISO8601 RFC3339
 
         data:
           oneOf:
