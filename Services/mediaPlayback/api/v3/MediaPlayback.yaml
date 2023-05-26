@@ -38,7 +38,6 @@ paths:
                 - voice-only
                 - voice-and-screen
                 - chat
-                - email
                 - all
             default: all
             example:
@@ -52,7 +51,7 @@ paths:
             enum:
               - true
               - false
-            default: true
+            default: false
       responses:
         '200':
           description: Success
@@ -86,14 +85,6 @@ paths:
                 $ref: '#/components/schemas/ErrorApiResponse'
               example:
                 $ref: '#/components/examples/Error403Example'
-        '404':
-          description: 404 Interaction Not Found
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorApiResponse'
-              example:
-                $ref: '#/components/examples/Error404Example'
         '500':
           description: 500 Internal Server Error
           content:
