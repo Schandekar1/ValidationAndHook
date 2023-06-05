@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   version: 'V1'
   title: 'access-key-management'
-  description: 'Micro Service for Access Management'
+  description: 'Micro Service for Access Managements'
   contact:
     email: "userhub@nice.com"
 tags:
