@@ -10,7 +10,7 @@ tags:
     description: Roles
   - name: Views
     description: Views
-  - name: Login-Authenticator
+  - name: LoginAuthenticator
     description: Login-Authenticator
 # Added by API Auto Mocking Plugin
 servers:
