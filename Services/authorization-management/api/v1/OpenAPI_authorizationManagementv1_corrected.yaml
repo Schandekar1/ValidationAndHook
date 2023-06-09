@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  version: V1
+  version: V2
   title: 'authorization-management'
   description: 'Micro Service For Authorization Management'
   contact:
