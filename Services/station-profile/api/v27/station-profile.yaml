@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   description: Admin commands
-  version: '9.0'
+  version: 'v27'
   title: AdminAPI
   contact: sachinc@yaml.com
 tags:
