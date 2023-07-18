@@ -23,26 +23,25 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      # MegaLinter
+       - name: MegaLinter - API Format validation
+          id: ml
+          # You can override MegaLinter flavor used to have faster performances
+          # More info at https://oxsecurity.github.io/megalinter/flavors/
+          uses:  oxsecurity/megalinter@v6
+          env:
+            # All available variables are described in documentation
+            # https://oxsecurity.github.io/megalinter/configuration/
+            #VALIDATE_ALL_CODEBASE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }} # Validates all source when push on main, else just the git diff with main. Override with true if you always want to lint all sources
 
-     # MegaLinter
-      - name: MegaLinter - API JSON Validation
-        id: ml
-        # You can override MegaLinter flavor used to have faster performances
-        # More info at https://megalinter.github.io/flavors/
-        uses: oxsecurity/megalinter/flavors/dart@v5.11.0
-        env:
-          # All available variables are described in documentation
-          # https://megalinter.github.io/configuration/
-          VALIDATE_ALL_CODEBASE: false # Validates all source when push on main, else just the git diff with main. Override with true if you always want to lint all sources
-          SPECTRAL_TOKEN: ${{ secrets.SPECTRAL_TOKEN }}       
-          OPENAPI_SPECTRAL_FILTER_REGEX_INCLUDE: .*api\/(.*)\.yaml
-          OPENAPI_SPECTRAL_CLI_LINT_MODE: file
-          OPENAPI_SPECTRAL_FILE_EXTENSIONS: ".yaml"
-          OPENAPI_SPECTRAL_RULES_PATH: "./validation/openAPIValidation.yaml"
-          ENABLE_LINTERS: OPENAPI_SPECTRAL         
-          PRINT_ALPACA: false
-          # ADD YOUR CUSTOM ENV VARIABLES HERE OR DEFINE THEM IN A FILE .mega-linter.yml AT THE ROOT OF YOUR REPOSITORY
-          # DISABLE: COPYPASTE,SPELL # Uncomment to disable copy-paste and spell checks
+            VALIDATE_ALL_CODEBASE: false
+            GITHUB_TOKEN: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
+            OPENAPI_SPECTRAL_FILTER_REGEX_INCLUDE: .*api\/(.*)\.yaml #analyze all .yaml files under the api directory when workflow triggers
+            OPENAPI_SPECTRAL_CLI_LINT_MODE: file
+            OPENAPI_SPECTRAL_FILE_EXTENSIONS: ".yaml"
+            OPENAPI_SPECTRAL_CONFIG_FILE: "validation/yamlSchema/openapi/validation-rules.yaml"  #path of the file where custom rules are defined
+            ENABLE_LINTERS: OPENAPI_SPECTRAL         
+            PRINT_ALPACA: false
           
   Webhook:
     needs: build
