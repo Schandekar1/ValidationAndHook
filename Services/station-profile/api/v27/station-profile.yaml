@@ -3,7 +3,6 @@ info:
   description: Admin commands
   version: 'v27'
   title: AdminAPI
-  contact: sachinc@yaml.com
 tags:
 - name: StationProfiles
   description: " : New in v27.0 Station Profile Management  "
